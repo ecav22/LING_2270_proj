@@ -1,0 +1,55 @@
+{
+  "builder_name": "parquet",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "jfleg",
+  "dataset_size": 759678,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/jhu-clsp/jfleg@8b9fb0e6b3456ed57c9ba5524ef9e26b01177750/data/validation-00000-of-00001.parquet": {
+      "num_bytes": 148081,
+      "checksum": null
+    },
+    "hf://datasets/jhu-clsp/jfleg@8b9fb0e6b3456ed57c9ba5524ef9e26b01177750/data/test-00000-of-00001.parquet": {
+      "num_bytes": 141012,
+      "checksum": null
+    }
+  },
+  "download_size": 289093,
+  "features": {
+    "sentence": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "corrections": {
+      "feature": {
+        "dtype": "string",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 1048771,
+  "splits": {
+    "validation": {
+      "name": "validation",
+      "num_bytes": 379979,
+      "num_examples": 755,
+      "dataset_name": "jfleg"
+    },
+    "test": {
+      "name": "test",
+      "num_bytes": 379699,
+      "num_examples": 748,
+      "dataset_name": "jfleg"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
