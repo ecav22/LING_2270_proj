@@ -2,6 +2,7 @@ import ast
 import spacy
 import nltk
 from nltk import CFG, ChartParser
+import difflib
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -130,3 +131,41 @@ def is_cfg_comma_splice(sentence):
             return True
 
     return False
+
+def tokenize(s):
+    doc = nlp(s)
+    return [t.text for t in doc if not t.is_space]
+
+
+def get_edits(src_tokens, tgt_tokens):
+    sm = difflib.SequenceMatcher(None, src_tokens, tgt_tokens)
+    edits = []
+    for tag, i1, i2, j1, j2 in sm.get_opcodes():
+        if tag != 'equal':
+            edits.append((tag, src_tokens[i1:i2], tgt_tokens[j1:j2]))
+    return edits
+
+
+def comma_only_edit(src, tgt):
+    """
+    Return True if ALL edits between src and tgt involve ONLY commas
+    (insert/delete/replace), and there is at least one edit.
+    """
+    if src is None or tgt is None:
+        return False
+
+    src_tokens = tokenize(src)
+    tgt_tokens = tokenize(tgt)
+    edits = get_edits(src_tokens, tgt_tokens)
+
+    if not edits:
+        # no edits at all: no error fixed
+        return False
+
+    for tag, old, new in edits:
+        # old + new is the set of tokens that changed
+        if not all(t == "," for t in old + new):
+            # some changed token is not a comma -> not a pure comma error
+            return False
+
+    return True
