@@ -1,1 +1,1 @@
-In order to run our code, first download df_clean.csv and df_syn_esl.csv. Then run the blocks that load in the data sets.
+In order to run our code, first download df_clean.csv and df_syn_esl.csv. Then run the blocks that load in the data sets. This would be the 9th and 16th code block. This avoids having to wait for the data to process.
